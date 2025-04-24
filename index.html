@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hazinf Profile Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #0f0f13;
+            overflow: hidden;
+        }
+        
+        .bg-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .bg-particles span {
+            position: absolute;
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: animate 15s linear infinite;
+        }
+        
+        .bg-particles span:nth-child(1) {
+            top: 10%;
+            left: 20%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+        
+        .bg-particles span:nth-child(2) {
+            top: 50%;
+            left: 70%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 1.5s;
+            animation-duration: 25s;
+        }
+        
+        .bg-particles span:nth-child(3) {
+            top: 80%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 5.5s;
+        }
+        
+        .bg-particles span:nth-child(4) {
+            top: 30%;
+            left: 80%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+        
+        .bg-particles span:nth-child(5) {
+            top: 65%;
+            left: 30%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 0s;
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .card {
+            position: relative;
+            width: 380px;
+            height: 450px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: skewX(-15deg);
+            pointer-events: none;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .card-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            z-index: 20;
+        }
+        
+        .profile-img {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(100, 149, 237, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(100, 149, 237, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(100, 149, 237, 0); }
+        }
+        
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .profile-name {
+            color: #fff;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .profile-title {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-icon.github {
+            background: rgba(24, 23, 23, 0.7);
+        }
+        
+        .social-icon.discord {
+            background: rgba(88, 101, 242, 0.7);
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.4);
+        }
+        
+        .social-icon.github:hover {
+            box-shadow: 0 5px 15px rgba(24, 23, 23, 0.6);
+        }
+        
+        .social-icon.discord:hover {
+            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.6);
+        }
+        
+        .glow {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(88, 101, 242, 0.8) 0%, rgba(88, 101, 242, 0) 70%);
+            border-radius: 50%;
+            filter: blur(30px);
+            animation: glow-move 8s infinite alternate;
+            z-index: -1;
+        }
+        
+        .glow:nth-child(1) {
+            top: -50px;
+            left: -50px;
+            animation-delay: 0s;
+        }
+        
+        .glow:nth-child(2) {
+            bottom: -50px;
+            right: -50px;
+            animation-delay: 2s;
+        }
+        
+        @keyframes glow-move {
+            0% { transform: translate(0, 0); opacity: 0.7; }
+            25% { transform: translate(50px, 50px); opacity: 0.5; }
+            50% { transform: translate(-50px, 50px); opacity: 0.8; }
+            75% { transform: translate(50px, -50px); opacity: 0.6; }
+            100% { transform: translate(-50px, -50px); opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <div class="card">
+        <div class="glow"></div>
+        <div class="glow"></div>
+        
+        <div class="card-content">
+            <div class="profile-img">
+                <img src="https://i.ebayimg.com/images/g/zNMAAOSwS7hhBjIA/s-l400.jpg" alt="Hazinf Profile Picture">
+            </div>
+            
+            <h2 class="profile-name">Hazinf</h2>
+            <p class="profile-title">PlaceHolder</p>
+            
+            <div class="social-icons">
+                <a href="https://github.com/Placeholder" target="_blank" class="social-icon github">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://discord.gg/Placeholder" target="_blank" class="social-icon discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+
+        document.querySelectorAll('.bg-particles span').forEach(span => {
+            span.style.left = Math.random() * 100 + '%';
+            span.style.top = Math.random() * 100 + '%';
+            span.style.width = Math.random() * 100 + 20 + 'px';
+            span.style.height = span.style.width;
+            span.style.animationDuration = Math.random() * 15 + 10 + 's';
+            span.style.animationDelay = Math.random() * 5 + 's';
+        });
+        
+       
+        const profileImg = document.querySelector('.profile-img');
+        profileImg.addEventListener('mouseover', () => {
+            profileImg.style.transform = 'scale(1.05)';
+            profileImg.style.boxShadow = '0 0 20px rgba(100, 149, 237, 0.8)';
+        });
+        
+        profileImg.addEventListener('mouseout', () => {
+            profileImg.style.transform = 'scale(1)';
+            profileImg.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+        });
+        
+       
+        document.querySelectorAll('.social-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                let ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.width = '100%';
+                ripple.style.height = '100%';
+                ripple.style.background = 'rgba(255, 255, 255, 0.2)';
+                ripple.style.borderRadius = '50%';
+                ripple.style.top = '0';
+                ripple.style.left = '0';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.transition = 'transform 0.6s ease, opacity 0.6s ease';
+                ripple.style.opacity = '1';
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.transform = 'scale(2)';
+                    ripple.style.opacity = '0';
+                }, 10);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
